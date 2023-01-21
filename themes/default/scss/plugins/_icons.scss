@@ -1,0 +1,375 @@
+/*--------------------------------
+
+Microncer Web Font
+
+-------------------------------- */
+@font-face {
+  font-family: 'microncer';
+  src: url('../fonts/microncer.eot');
+  src: url('../fonts/microncer.eot') format('embedded-opentype'), url('../fonts/microncer.woff2') format('woff2'), url('../fonts/microncer.woff') format('woff'), url('../fonts/microncer.ttf') format('truetype'), url('../fonts/microncer.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/*------------------------
+	base class definition
+-------------------------*/
+.icon {
+  display: inline-block;
+  font-family: 'microncer';
+  font-style:normal;
+  speak: none;
+  text-transform: none;
+  /* Better Font Rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/*------------------------
+  change icon size
+-------------------------*/
+/* relative units */
+.icon-sm {
+  font-size: 0.8em;
+}
+.icon-lg {
+  font-size: 1.2em;
+}
+/* absolute units */
+.icon-16 {
+  font-size: 16px;
+}
+.icon-32 {
+  font-size: 32px;
+}
+/*----------------------------------
+  add a square/circle background
+-----------------------------------*/
+.icon-bg-square,
+.icon-bg-circle {
+  padding: 0.35em;
+  background-color: #eee;
+}
+.icon-bg-circle {
+  border-radius: 50%;
+}
+/*------------------------------------
+  use icons as list item markers
+-------------------------------------*/
+.icon-ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+.icon-ul > li {
+  display: flex;
+  align-items: flex-start;
+  line-height: 1.4;
+}
+.icon-ul > li > .icon {
+  margin-right: 0.4em;
+  line-height: inherit;
+}
+/*------------------------
+  spinning icons
+-------------------------*/
+.icon-is-spinning {
+  -webkit-animation: icon-spin 2s infinite linear;
+  -moz-animation: icon-spin 2s infinite linear;
+  animation: icon-spin 2s infinite linear;
+}
+@-webkit-keyframes icon-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-moz-keyframes icon-spin {
+  0% {
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@keyframes icon-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+/*------------------------
+  rotated/flipped icons
+-------------------------*/
+.icon-rotate-90 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.icon-rotate-180 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.icon-rotate-270 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+.icon-flip-y {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+  -webkit-transform: scale(-1, 1);
+  -moz-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+.icon-flip-x {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: scale(1, -1);
+  -moz-transform: scale(1, -1);
+  -ms-transform: scale(1, -1);
+  -o-transform: scale(1, -1);
+  transform: scale(1, -1);
+}
+/*------------------------
+	icons
+-------------------------*/
+
+.icon-tag-content::before {
+  content: "\ea03";
+}
+
+.icon-time::before {
+  content: "\ea04";
+}
+
+.icon-zoom-2::before {
+  content: "\ea05";
+}
+
+.icon-zoom-split::before {
+  content: "\ea06";
+}
+
+.icon-b-chart::before {
+  content: "\ea07";
+}
+
+.icon-s-remove::before {
+  content: "\ea08";
+}
+
+.icon-clock::before {
+  content: "\ea09";
+}
+
+.icon-home-2::before {
+  content: "\ea0a";
+}
+
+.icon-grid-interface::before {
+  content: "\ea0b";
+}
+
+.icon-f-comment::before {
+  content: "\ea0c";
+}
+
+.icon-email::before {
+  content: "\ea0d";
+}
+
+.icon-send-2::before {
+  content: "\ea0e";
+}
+
+.icon-calendar-date-2::before {
+  content: "\ea0f";
+}
+
+.icon-spaceship::before {
+  content: "\ea10";
+}
+
+.icon-network-connection::before {
+  content: "\ea11";
+}
+
+.icon-arrow-left::before {
+  content: "\ea12";
+}
+
+.icon-arrow-down::before {
+  content: "\ea13";
+}
+
+.icon-arrow-up::before {
+  content: "\ea14";
+}
+
+.icon-arrow-right::before {
+  content: "\ea15";
+}
+
+.icon-up-arrow::before {
+  content: "\ea16";
+}
+
+.icon-right-arrow::before {
+  content: "\ea17";
+}
+
+.icon-down-arrow::before {
+  content: "\ea18";
+}
+
+.icon-left-arrow::before {
+  content: "\ea19";
+}
+
+.icon-logo-instagram::before {
+  content: "\ea1a";
+}
+
+.icon-logo-rss::before {
+  content: "\ea1b";
+}
+
+.icon-logo-pinterest::before {
+  content: "\ea1c";
+}
+
+.icon-logo-linkedin::before {
+  content: "\ea1d";
+}
+
+.icon-logo-facebook::before {
+  content: "\ea1e";
+}
+
+.icon-logo-vk::before {
+  content: "\ea1f";
+}
+
+.icon-logo-whatsapp::before {
+  content: "\ea20";
+}
+
+.icon-logo-twitter::before {
+  content: "\ea21";
+}
+
+.icon-logo-vimeo::before {
+  content: "\ea22";
+}
+
+.icon-logo-youtube::before {
+  content: "\ea23";
+}
+
+.icon-handshake::before {
+  content: "\ea24";
+}
+
+.icon-cut::before {
+  content: "\ea25";
+}
+
+.icon-coins::before {
+  content: "\ea26";
+}
+
+.icon-payment-method::before {
+  content: "\ea27";
+}
+
+.icon-card-edit::before {
+  content: "\ea28";
+}
+
+.icon-card-favorite::before {
+  content: "\ea29";
+}
+
+.icon-card-remove::before {
+  content: "\ea2a";
+}
+
+.icon-card-update::before {
+  content: "\ea2b";
+}
+
+.icon-single-05::before {
+  content: "\ea2c";
+}
+
+.icon-shopping-cart::before {
+  content: "\ea2d";
+}
+
+.icon-paypal-2::before {
+  content: "\ea30";
+}
+
+.icon-stripe-2::before {
+  content: "\ea31";
+}
+
+.icon-coupon::before {
+  content: "\ea32";
+}
+
+.icon-award::before {
+  content: "\ea33";
+}
+
+.icon-recipe-create::before {
+  content: "\ea34";
+}
+
+.icon-attachment::before {
+  content: "\ea35";
+}
+
+.icon-cloud-upload::before {
+  content: "\ea36";
+}
+
+.icon-newsletter::before {
+  content: "\ea37";
+}
+
+.icon-logo-paypal::before {
+  content: "\ea38";
+}
+
+.icon-stripe::before {
+  content: "\ea39";
+}
+
+.icon-logo-paypal-3::before {
+  content: "\ea3a";
+}
+
+.icon-shape-star::before {
+  content: "\ea3b";
+}

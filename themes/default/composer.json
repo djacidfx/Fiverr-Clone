@@ -1,0 +1,5 @@
+{
+    "require": {
+        "ytake/laravel-smarty": "^6.0"
+    }
+}

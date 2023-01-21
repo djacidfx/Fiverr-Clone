@@ -1,0 +1,49 @@
+{include file="header.html"}
+<div class="service-title-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>{$lang_messages}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="dashboard-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="dashboard-sidebar">
+                    {include file="dashboard-menu.html" selected="messages"}
+                </div>
+            </div>
+            <div class="col-lg-9">
+                {if $total_records eq 0}
+                <div class="alert alert-warning">{$lang_no_messages}</div>
+                {else}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>#{$lang_order}</th>
+                        <th>{$lang_date}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {section name=x loop=$messages}
+                    <tr {if $messages[x].sid|get_unreaded_messages_number:$islogged gt 0}class="unreaded"{/if}>
+                        <td>
+                            <a href="./dashboard/orders/order/{$messages[x].order_id}#message-{$messages[x].id}">#{$messages[x].order_id} {if $messages[x].sid|get_unreaded_messages_number:$islogged gt 0}<span class="badge badge-danger">{$messages[x].sid|get_unreaded_messages_number:$islogged}</span>{/if}</a>
+                            <h5>{$messages[x].service_id|get_service_title}</h5>
+                        </td>
+                        <td width="150">{$messages[x].datetime|get_datetime:1}</td>
+                    </tr>
+                    {/section}
+                    </tbody>
+                </table>
+                {$paginations}
+                {/if}
+            </div>
+        </div>
+    </div>
+</div>
+
+{include file="footer.html"}

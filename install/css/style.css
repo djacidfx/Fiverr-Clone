@@ -1,0 +1,82 @@
+body {
+padding-bottom:50px;
+padding-top:50px;
+overflow-y: scroll;
+overflow-x: hidden;
+}
+a, a:hover, a:active, a:focus {
+outline:none !important;
+}
+
+.login-logo {
+    font-family:'Roboto', sans-serif;
+    font-variant: all-small-caps;
+    line-height:1;
+    font-weight:900;
+    margin-top:0;
+    margin-bottom:15px;
+    padding-bottom:10px;
+    border-bottom:1px solid #eee;
+    color:#5053AB;
+    font-size:22px;
+}
+
+.login-logo span{
+    background:#EF59AC;
+    color:#fff;
+    line-height:0;
+    font-size:14px;
+    position:relative;
+    padding:0 10px;
+    top:-2px;
+    left:5px;
+    border-radius:2px;
+}
+
+.content {
+background:#fff;
+padding:15px;
+}
+.steps {
+padding-bottom:15px;
+margin-bottom:15px;
+border-bottom:1px dashed #ddd;
+}
+.steps span {
+background:#eee;
+text-align:center;
+display:block;
+padding:10px;
+font-family:'Roboto';
+font-weight:300;
+}
+.steps  i{
+display:block;
+font-size:40px;
+margin-bottom:10px;
+color:#ccc;
+text-shadow:1px 1px 1px #fff;
+}
+.steps span.selected-span {
+background:#666;
+color:#fff;
+}
+.steps span.selected-span i{
+color:#eee;
+text-shadow:1px 1px 1px #444;
+}
+.page-header {
+margin:0;
+margin-bottom:15px;
+}
+.page-header h1{
+font-family:'Roboto';
+color:#39BB9D;
+font-size:16px;
+}
+.action-div {
+padding:15px;
+margin-top:15px;
+border-top:1px dashed #ddd;
+overflow:hidden;
+}

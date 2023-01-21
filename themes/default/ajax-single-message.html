@@ -1,0 +1,15 @@
+<div class="message">
+    <h4><strong>{if $islogged eq $message_customer_id}{$lang_me}{else}{$lang_admin}{/if}</strong>, {$lang_on} {$message_datetime|get_datetime}</h4>
+
+    <p>{$message_message|nl2br}</p>
+    {if $message_id|get_message_attachments neq 0}
+    <div class="attachments">
+        <h5>Attachments</h5>
+        <ul>
+            {foreach name=x from=$message_id|get_message_attachments key=id item=attachments}
+            <li><a href="./download-attachment/{$attachments.id}">{$attachments.attachment_filename}</a></li>
+            {/foreach}
+        </ul>
+    </div>
+    {/if}
+</div>

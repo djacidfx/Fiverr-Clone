@@ -1,0 +1,121 @@
+.slider {
+
+  .slide {
+    height:rem-calc(600);
+    margin:0;
+    position:relative;
+    z-index:1;
+    &:after {
+      content:'';
+      position:absolute;
+      z-index:3;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      background:rgba(0,0,0,0.4);
+    }
+    img {
+      height:rem-calc(600);
+      width:100%;
+      object-fit:cover;
+      position:absolute;
+      z-index:2;
+
+    }
+    .row {
+      display:flex;
+      align-items: center;
+      height:rem-calc(600);
+      position:relative;
+      z-index:5;
+      h3 {
+
+        color:#fff;
+        line-height:rem-calc(40);
+        font-size:rem-calc(38);
+        font-weight:700;
+      }
+      p {
+        color:#fff;
+        line-height:rem-calc(26);
+        font-size:rem-calc(18);
+        font-weight:300;
+      }
+    }
+
+  }
+  .slick-arrow {
+
+    &:before {
+      font-family: 'microncer';
+      color: #fff;
+      background: rgba(255,255,255,0.2);
+      opacity:1;
+      height: rem-calc(60);
+      width: rem-calc(60);
+      line-height:rem-calc(60);
+      display:block;
+      font-size:rem-calc(32);
+      transition:all 0.3s linear;
+    }
+    &:hover {
+      &:before {
+        color:#5053AB;
+        background: rgba(255, 255, 255, 0.7);
+      }
+    }
+
+    &.slick-prev {
+      top:auto;
+      transform:none;
+      right: rem-calc(100);
+      left:auto;
+      bottom:rem-calc(40);
+
+      &:before {
+        content: "\ea19";
+      }
+    }
+
+    &.slick-next {
+      top:auto;
+      transform:none;
+      right: rem-calc(40);
+      left:auto;
+      bottom:rem-calc(40);
+      &:before {
+        content: "\ea17";
+      }
+    }
+  }
+  .slick-dots {
+    position:absolute;
+    width: 100%;
+    bottom:rem-calc(20);
+    li {
+      margin: rem-calc(0 5);
+      button {
+        width:rem-calc(18);
+        height:rem-calc(18);
+        &:before {
+          content:'';
+          background:#fff;
+          opacity:1;
+          border:rem-calc(1) solid #fff;
+          border-radius:100%;
+          width:rem-calc(15);
+          height:rem-calc(15);
+        }
+      }
+      &.slick-active {
+        button {
+          &:before {
+            background:#5053AB;
+            border-color:#5053AB;
+          }
+        }
+      }
+    }
+  }
+}

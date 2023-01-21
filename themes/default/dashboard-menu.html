@@ -1,0 +1,6 @@
+<div class="list-group">
+    <a href="./dashboard/messages" class="list-group-item list-group-item-action {if $selected eq 'messages'}active{/if}">{$lang_messages} {if $messages_count gt 0} <span class="badge badge-danger">{$messages_count}</span>{/if}</a>
+    <a href="./dashboard/orders" class="list-group-item list-group-item-action {if $selected eq 'orders'}active{/if}">{$lang_orders}</a>
+    <a href="./dashboard/account" class="list-group-item list-group-item-action {if $selected eq 'account'}active{/if}">{$lang_account}</a>
+    <a class="list-group-item list-group-item-action" href="javascript:void();" data-toggle="modal" data-target="#login-modal" class="user-button" data-backdrop="static" data-keyboard="false">{$lang_logout}</a>
+</div>

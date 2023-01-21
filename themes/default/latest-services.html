@@ -1,0 +1,25 @@
+<div class="services">
+    <div class="container">
+        <div class="block-title">
+            <h3>{$lang_services}</h3>
+        </div>
+        {if $services_number gt 0}
+        <div class="row">
+            {section name=x loop=$services}
+                <div class="col-lg-4 col-md-6">
+                     {include file="template-parts/service-template.html"}
+                </div>
+            {/section}
+        </div>
+        {if $services_number gt $theme_home_services_number}
+        <div class="more-services">
+            <a href="./services" class="btn btn-lg btn-secondary">{$lang_all_services}</a>
+        </div>
+        {/if}
+        {else}
+            <div class="alert alert-warning">
+                {$lang_services_coming_soon}
+            </div>
+        {/if}
+    </div>
+</div>

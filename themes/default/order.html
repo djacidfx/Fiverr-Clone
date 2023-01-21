@@ -1,0 +1,87 @@
+{include file="header.html"}
+<div class="service-title-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>{$lang_order} #{$order_order_id}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="order-details-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="dashboard-sidebar">
+                    {include file="dashboard-menu.html" selected="orders"}
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="service-details-box">
+                    <h5>{$lang_service_details}</h5>
+                    <h3><a href="./service/{$service_slug}">{$service_title|html_decode}</a></h3>
+                    <div class="service-price-delivery">
+                        {$order_amount}<small>{$order_currency}</small>
+                        {if $service_digital_download eq 0}
+                        <span>{if $service_delivery eq 0}{$lang_deliver_immediately}{else}{$service_delivery}<small>{$lang_days}</small>{/if}</span>
+                        {else}
+                        <a href="./download-file/{$order_order_id}" class="download-btn">{$lang_download}</a>
+                        {/if}
+                    </div>
+                    <ul>
+                        <li><i class="icon icon-calendar-date-2"></i> <strong>{$lang_created}</strong> {$order_order_datetime|get_datetime:1}</li>
+                        {if $service_digital_download eq 0}
+                        <li><i class="icon icon-calendar-date-2"></i> <strong>{$lang_started}</strong> {if $order_start_datetime eq 0}{$lang_not_started}{else}{$order_start_datetime|get_datetime:1}{/if}</li>
+                        <li><i class="icon icon-calendar-date-2"></i> <strong>{$lang_expected}</strong> {if $order_expected_datetime eq 0}{$lang_not_started}{else}{$order_expected_datetime|get_datetime:1}{/if}</li>
+                        {/if}
+                    </ul>
+                </div>
+                {if !empty($service_requirements) AND $service_digital_download eq 0}
+                <div class="order-requirements-box">
+                    <i class="icon icon-recipe-create"></i>
+                    <h5>{$lang_order_requirements}</h5>
+                    <div class="order-requirements-details wysiwyg">{$service_requirements|html_decode}</div>
+                </div>
+                {/if}
+                <div class="messages">
+                    {section name=x loop=$messages}
+                    <div class="message {if $messages[x].sender_id eq 0}admin-sender{/if}" id="message-{$messages[x].id}">
+                        <h4><strong>{if $islogged eq $messages[x].sender_id}{$lang_me}{else}{$lang_admin}{/if}</strong>, {$lang_on} {$messages[x].datetime|get_datetime}</h4>
+                        <p>{$messages[x].message|nl2br}</p>
+                        {if $messages[x].id|get_message_attachments neq 0}
+                        <div class="attachments">
+                            <h5>{$lang_attachments}</h5>
+                            <ul>
+                                {foreach name=x from=$messages[x].id|get_message_attachments key=id item=attachments}
+                                <li><a href="./download-attachment/{$attachments.id}">{$attachments.attachment_filename}</a></li>
+                                {/foreach}
+                            </ul>
+                        </div>
+                        {/if}
+                    </div>
+                    {/section}
+                </div>
+                <div class="messages-box">
+                    <div id="ajax-result-message"></div>
+                    <div class="send-message-form">
+                        <form method="post" id="message-form" action="">
+                        <div class="form-group">
+                            <label for="message">{$lang_message} <span>*</span></label>
+                            <textarea id="message" name="message" class="form-control" rows="5" placeholder="{$lang_message_placeholder}" onkeyup="checkLength(this);"></textarea>
+                            <input type="hidden" name="order_id" value="{$order_id}" />
+                            <input type="hidden" name="service_id" value="{$service_id}" />
+                            <button type="submit" id="message-submit" class="btn btn-sm btn-secondary" disabled="true">{$lang_submit}</button>
+                        </div>
+                        </form>
+                        <div class="message-tools">
+                            <input type="file" name="files[]" class="upload-files" data-jfiler-limit="10" showThumbs="false">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{include file="footer.html"}

@@ -1,0 +1,118 @@
+body {
+    background-color: #f7f9fc;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    height:100vh;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-row {
+    width:300px;
+
+}
+.login-panel {
+    padding:15px;
+    box-shadow: 0 0 10px rgba(28, 39, 60, 0.05);
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(72, 94, 144, 0.16);
+    border-radius: 0.25rem;
+}
+.login-panel #message .alert {
+    border-radius:0;
+    font-family: 'Public Sans', sans-serif;
+    font-weight:300;
+    font-size:14px;
+    line-height:26px;
+    font-variant: all-small-caps;
+}
+
+.logo {
+    text-align:center;
+    margin-bottom:20px;
+}
+.logo h1 {
+    font-family: 'Public Sans', sans-serif;
+    font-weight:900;
+    font-variant: all-small-caps;
+    font-size:20px;
+    color: #627293;
+    margin-bottom:10px;
+    margin-top:10px;
+}
+.logo img {
+    width:30px;
+}
+.logo h1 span {
+    font-size:13px;
+    background:#0168FA;
+    color:#fff;
+    padding:3px 7px 4px 7px;
+    border-radius:3px;
+    margin:0 0 0 8px;
+    line-height:1;
+    position:relative;
+    top:-4px;
+    font-variant: all-small-caps;
+}
+.logo h3 {
+    font-family: 'Public Sans', sans-serif;
+    font-weight:300;
+    font-size:15px;
+    color:#999;
+    font-variant: all-small-caps;
+    margin:0;
+}
+.form-group {
+    margin-bottom:20px;
+}
+.form-group label {
+    font-family: 'Public Sans', sans-serif;
+    font-weight:300;
+    color:#555;
+    font-size:13px;
+    font-variant: all-small-caps;
+    width:100%;
+}
+.form-group label a {
+    float:right;
+    color: #627293;
+}
+.form-group input {
+    border-radius:0;
+}
+.login-panel .btn {
+    font-family: 'Public Sans', sans-serif;
+    font-weight:300;
+    font-size:14px;
+    line-height:26px;
+    font-variant: all-small-caps;
+}
+.sp-circle {
+    border: 4px rgba(255, 255, 255, 0.25) solid;
+    border-bottom: 4px white solid;
+    border-radius: 50%;
+    -webkit-animation: spCircRot .6s infinite linear;
+    animation: spCircRot .6s infinite linear;
+    width: 13px;
+    height: 13px;
+    display: inline-block;
+}
+
+@-webkit-keyframes spCircRot {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(359deg);
+    }
+}
+@keyframes spCircRot {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}

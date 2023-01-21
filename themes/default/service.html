@@ -1,0 +1,59 @@
+{include file="header.html"}
+<div class="service-title-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>{$service_title|html_decode}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="service-details-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                {if $service_id|get_service_image neq 0}
+                {if $service_id|get_service_image|@count gt 1}
+                <div class="service-images" dir="ltr">
+                    {foreach name=x from=$service_id|get_service_image key=id item=images}
+                    <img src="upload/services/{$images.service_id}/{$images.filename}" />
+                    {/foreach}
+                </div>
+                {else}
+                <div class="service-image">
+                    {foreach name=x from=$service_id|get_service_image key=id item=images}
+                    <img src="upload/services/{$images.service_id}/{$images.filename}" />
+                    {/foreach}
+                </div>
+                {/if}
+                {/if}
+                <div class="service-description">
+                    <h5>{$lang_service_details}</h5>
+                    <div class="wysiwyg">{$service_content|html_decode}</div>
+                </div>
+                {include file="template-parts/share-service.html"}
+            </div>
+            <div class="col-lg-4">
+                <div class="price-details">
+                    <h3>{$service_price}<small>{$payment_site_currency}</small></h3>
+                    <h5>{if $service_delivery eq 0}{$lang_deliver_immediately}{else}{$lang_deliver_within} <strong>{$service_delivery}</strong> {$lang_days}{/if}</h5>
+                </div>
+                <div class="purchase-button">
+
+                    {if $islogged eq 0}
+                    <a href="javascript:void();" data-toggle="modal" data-target="#login-modal" data-backdrop="static" data-keyboard="false"><i class="icon icon-shopping-cart"></i>{$lang_purchase_service}</a>
+                    {else}
+                    {if $service_active eq 1}
+                    <a href="./pay/{$service_slug}"><i class="icon icon-shopping-cart"></i>{$lang_purchase_service}</a>
+                    {else}
+                    <a href="javascript:void();"><i class="icon icon-shopping-cart"></i>{$lang_service_disabled}</a>
+                    {/if}
+                    {/if}
+                </div>
+                {include file="template-parts/service-inquiry-form.html"}
+            </div>
+        </div>
+    </div>
+</div>
+{include file="template-parts/related-services.html"}
+{include file="footer.html"}

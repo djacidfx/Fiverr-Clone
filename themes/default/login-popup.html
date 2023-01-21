@@ -1,0 +1,122 @@
+{if $users_enable_facebook_login eq 1}
+{literal}
+<script>
+window.fbAsyncInit = function() {
+	FB.init({
+		appId      : '{/literal}{$users_facebook_app_id}{literal}', // FB App ID
+		status     : true, // check login status
+		cookie     : true, // enable cookies to allow the server to access the session
+		xfbml      : true,  // parse XFBML
+		version    : 'v3.3' // graph api version
+	});
+};
+
+(function(d){
+	var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+	if (d.getElementById(id)) {return;}
+	js = d.createElement('script'); js.id = id; js.async = true;
+	js.src = "//connect.facebook.net/en_US/all.js";
+	ref.parentNode.insertBefore(js, ref);
+}(document));
+
+function FBLogin() {
+	FB.login(function (response) {
+		if (response.authResponse) {
+		verify_user();
+		} else {
+		alert('User cancelled login or did not fully authorize.');
+		}
+	}, {scope: 'email'});
+}
+
+function verify_user() {
+	FB.api('/me', {locale: 'en_US', fields: 'id, name, email'}, function (response) {
+		var currentpage = jQuery("input[name='currentpage']").val();
+		var send_data = {
+			action: 'facebook_login',
+			facebook_auth_id: response.id,
+			username: response.name,
+			email: response.email
+		};
+		jQuery.post('ajax.php', send_data, function(data) {
+			result = JSON.parse(data);
+			if (result.status == 1) {
+				document.location.href = currentpage;
+			} else {
+				jQuery('#login-message').html(result.msg);
+			}
+		});
+	});
+}
+</script>
+{/literal}
+{/if}
+<div class="modal fade" id="login-modal">
+	<div class="modal-dialog">
+		<div class="container">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+							{if $islogged eq 0}
+							<div class="login-logo">
+								<h3>{$lang_login}
+									<a href="javascript:void();" data-dismiss="modal" class="close-modal" aria-hidden="true"><i class="icon icon-s-remove"></i></a>
+								</h3>
+							</div>
+							<div id="login-message"></div>
+							{if $users_enable_facebook_login OR $users_enable_twitter_login OR $users_enable_envato_login}
+								<div class="social-login">
+									{if $users_enable_facebook_login eq 1 AND !empty($users_facebook_app_id)}
+									<a href="javascript:FBLogin();" class="facebook-login">{$lang_facebook_login}</a>
+									{/if}
+									{if $users_enable_twitter_login eq 1 AND !empty($twitter_login_url)}
+									<a href="{$twitter_login_url}" class="twitter-login">{$lang_twitter_login}</a>
+									{/if}
+									{if $users_enable_envato_login eq 1 AND !empty($envato_login_url)}
+									<a href="{$envato_login_url}" class="envato-login">{$lang_envato_login}</a>
+									{/if}
+								</div>
+							{/if}
+							<form id="login-form" class="login-form" method="POST" action="">
+								<div class="form-group">
+									<label for="login-username">{$lang_email_or_username}</label>
+									<input type="text" class="form-control" name="username" id="login-username" />
+								</div>
+								<div class="form-group">
+									<label for="login-password">{$lang_password} <a href="./forget-password" class="fpass-btn">{$lang_forget_password}</a></label>
+									<input type="password" class="form-control" name="password" id="login-password" />
+								</div>
+								<div class="form-group">
+									<div class="checkbox-styled">
+										<input id="remember" name="remember" value="1" type="checkbox">
+										<label for="remember">
+											<span>{$lang_remember_me}</span>
+										</label>
+									</div>
+								</div>
+								<div class="form-buttons">
+									<input type="hidden" name="currentpage" value="{$currentpage}" />
+									<button type="button" id="login-btn" class="btn btn-secondary">{$lang_login}</button>
+								</div>
+							</form>
+							{else}
+							<div class="login-logo">
+								<h3>{$lang_logout}
+									<a href="javascript:void();" data-dismiss="modal" class="close-modal" aria-hidden="true"><i class="icon icon-s-remove"></i></a>
+								</h3>
+							</div>
+							<div class="logout-message">
+								<p>{$lang_logout_confirmation}</p>
+							</div>
+							<div class="form-buttons">
+								<button type="button" id="logout-btn" class="btn btn-danger">{$lang_logout}</button>
+							</div>
+							{/if}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

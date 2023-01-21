@@ -1,0 +1,45 @@
+.page-title {
+  padding:rem-calc(80 0);
+  background:#5053AB;
+
+  color:#fff;
+  h3 {
+    line-height:rem-calc(40);
+    font-size:rem-calc(32);
+    font-weight:700;
+  }
+  p {
+    line-height:rem-calc(24);
+    font-size:rem-calc(16);
+    font-weight:300;
+  }
+}
+.signup-wrapper {
+  padding:rem-calc(80 0);
+  min-height:50vh;
+  .social-login {
+    margin-bottom:rem-calc(30);
+    border-bottom:rem-calc(1) dashed #ddd;
+    a {
+      display:block;
+      text-align:center;
+      padding:rem-calc(7 22);
+      margin-bottom:rem-calc(20);
+      color:$white;
+      border-radius:rem-calc(3);
+      transition:all 0.3s linear;
+      &.facebook-login {
+        background:#4267b2;
+      }
+      &.twitter-login {
+        background:#1DA1F2;
+      }
+      &.envato-login {
+        background:#81B441;
+      }
+      &:hover {
+        background:#333;
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+.orders-wrapper {
+  padding:rem-calc(60 0);
+  min-height:70vh;
+  .table {
+    thead {
+      tr {
+        border:none;
+        th {
+          color:#5053AB;
+          border-bottom:none;
+
+        }
+      }
+    }
+    tbody {
+      tr {
+        td {
+          color:#888;
+          a {
+            color:#222;
+          }
+          .badge {
+
+          }
+        }
+      }
+    }
+  }
+}

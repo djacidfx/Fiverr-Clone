@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <BASE href="{$general_siteurl}">
+    <link rel="icon" type="image/png" href="upload/{$theme_favicon}"/>
+    <link rel="shortcut icon" type="image/png" href="upload/{$theme_favicon}"/>
+    <title>{$seo_title}</title>
+    <meta name="description" content="{$seo_description}" />
+    <meta name="keywords" content="{$seo_keywords}" />
+    {if isset($seo_canonical) AND $seo_canonical eq 1}
+    <link rel="canonical" href="{$canonical_link}" />
+    {/if}
+    {if isset($is_service) AND $is_service eq 1}
+    <meta property="og:title" content="{$service_title|html_decode}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="{$currentpage}" />
+    <meta property="og:image" content="{$service_id|get_service_facebook_image:$general_siteurl}" />
+    <meta property="og:description" content="{$service_content|html_decode|strip_tags|truncate:255}" />
+    <meta property="og:site_name" content="{$general_seo_title}" />
+    {/if}
+    {$fonts}
+    <link rel="stylesheet" href="themes/default/css/app.css" />
+
+    <script src="themes/default/js/jquery.min.js"></script>
+    <script src="themes/default/js/popper.min.js"></script>
+    <script src="themes/default/js/bootstrap.min.js"></script>
+    <script src="themes/default/js/slick.min.js"></script>
+    <script src="themes/default/js/jquery.matchHeight-min.js"></script>
+    <script src="themes/default/js/sweetalert2.min.js"></script>
+    <script src="themes/default/js/jquery.filer.min.js"></script>
+    <script src="themes/default/js/filer-functions.js"></script>
+    <script src="themes/default/js/rrssb.js"></script>
+    <script src="themes/default/js/app.js"></script>
+    {if isset($theme_header_code) AND !empty($theme_header_code)}
+    {$theme_header_code}
+    {/if}
+</head>
+<body {if $theme_theme_direction eq "rtl"}class="rtl-lang"{/if}>
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 column">
+                    <div class="top-menu">
+                        <div class="logo">
+                            <a href="./">
+                                {if !empty($theme_logo)}
+                                <img src="upload/{$theme_logo}" />
+                                {else}
+                                Microncer<span>GIGS</span>
+                                {/if}
+                            </a>
+                        </div>
+                        <div class="header-menu">
+
+                            <div class="btn-group d-inline-block d-md-none">
+                                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <ul class="dropdown-content">
+
+                                    {if $islogged eq 0}
+                                    <li><a href="./services">{$lang_services}</a></li>
+                                    <li><a href="javascript:void();" data-toggle="modal" data-target="#login-modal" class="user-button" data-backdrop="static" data-keyboard="false">{$lang_login}</a></li>
+                                    <li><a href="./signup">{$lang_signup}</a></li>
+                                    {else}
+                                    <li><a href="./dashboard/messages">{$lang_messages}{if $messages_count gt 0} <span class="badge badge-danger">{$messages_count}</span>{/if}</a></li>
+                                    <li><a href="./dashboard/orders">{$lang_orders}</a></li>
+                                    <li><a href="./dashboard/account">{$lang_account}</a></li>
+                                    <li><a href="javascript:void();" data-toggle="modal" data-target="#login-modal" class="user-button" data-backdrop="static" data-keyboard="false">{$lang_logout}</a></li>
+                                    {/if}
+                                        {if $categories neq 0}
+                                        <h6 class="dropdown-header">{$lang_categories}</h6>
+                                        {section name=x loop=$categories}
+                                        <li><a href="./category/{$categories[x].id}">{$categories[x].category|html_decode}</a></li>
+                                        {/section}
+                                        {/if}
+                                    </ul>
+                                </div>
+                            </div>
+
+                        <ul class="right d-none d-md-block">
+                            {if $categories neq 0}
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#" role="button" id="categories" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {$lang_categories}
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="categories">
+                                    {section name=x loop=$categories}
+                                    <a class="dropdown-item" href="./category/{$categories[x].id}">{$categories[x].category|html_decode}</a>
+                                    {/section}
+                                </div>
+                            </li>
+                            {/if}
+                            <li><a href="./services">{$lang_services}</a></li>
+                            {if $islogged eq 0}
+                            <li><a href="javascript:void();" data-toggle="modal" data-target="#login-modal" class="user-button" data-backdrop="static" data-keyboard="false">{$lang_login}</a></li>
+                            <li><a href="./signup">{$lang_signup}</a></li>
+                            {else}
+                                <li><a href="./dashboard/messages">{$lang_messages}{if $messages_count gt 0} <span class="badge badge-danger">{$messages_count}</span>{/if}</a></li>
+                                <li><a href="./dashboard/orders">{$lang_orders}</a></li>
+                                <li><a href="./dashboard/account">{$lang_account}</a></li>
+                                <li><a href="javascript:void();" data-toggle="modal" data-target="#login-modal" class="user-button" data-backdrop="static" data-keyboard="false">{$lang_logout}</a></li>
+                            </ul>
+                        {/if}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

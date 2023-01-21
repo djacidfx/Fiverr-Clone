@@ -1,0 +1,31 @@
+{include file="header.html"}
+<div class="service-title-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>{$category_category|html_decode}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="services">
+    <div class="container">
+        {if $services_number gt 0}
+        <div class="row">
+            {section name=x loop=$services}
+                <div class="col-lg-4 col-md-6">
+                    {include file="template-parts/service-template.html"}
+                </div>
+            {/section}
+        </div>
+        <div class="services-pagination">
+            {$paginations}
+        </div>
+        {else}
+            <div class="alert alert-warning">
+                {$lang_services_coming_soon}
+            </div>
+        {/if}
+    </div>
+</div>
+{include file="footer.html"}

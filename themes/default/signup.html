@@ -1,0 +1,62 @@
+{include file="header.html"}
+<div class="page-title">
+	<div class="container">
+		<div class="row">
+            <div class="col-md-12">
+                <h3>{$lang_new_account}</h3>
+                <p>{$lang_new_account_instructions}</p>
+            </div>
+
+		</div>
+	</div>
+</div>
+<div class="signup-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-lg-4">
+				{if $users_enable_facebook_login OR $users_enable_twitter_login OR $users_enable_envato_login}
+				<div class="social-login">
+					{if $users_enable_facebook_login eq 1 AND !empty($users_facebook_app_id)}
+					<a href="javascript:FBLogin();" class="facebook-login">{$lang_facebook_signup}</a>
+					{/if}
+					{if $users_enable_twitter_login eq 1 AND !empty($twitter_login_url)}
+					<a href="{$twitter_login_url}" class="twitter-login">{$lang_twitter_signup}</a>
+					{/if}
+					{if $users_enable_envato_login eq 1 AND !empty($envato_login_url)}
+					<a href="{$envato_login_url}" class="envato-login">{$lang_envato_signup}</a>
+					{/if}
+				</div>
+				{/if}
+				<div id="signup-message"></div>
+				<form id="signup-form" class="login-form" method="POST" action="">
+				  <div class="form-group">
+					<label for="username">{$lang_username} <span>*</span></label>
+					<input type="text" class="form-control" name="username" id="username" />
+				  </div>
+				  <div class="form-group">
+					<label for="email">{$lang_email} <span>*</span></label>
+					<input type="text" class="form-control" name="email" id="email" />
+				  </div>
+				  <div class="form-group">
+					<label for="password">{$lang_password} <span>*</span></label>
+					<input type="password" class="form-control" name="password" id="password" />
+				  </div>
+				  <div class="form-group">
+					<label for="confirm_password">{$lang_confirm_password} <span>*</span></label>
+					<input type="password" class="form-control" name="confirm_password" id="confirm_password" />
+				  </div>
+				  {if isset($api_allow_signup_recaptcha) AND $api_allow_signup_recaptcha eq 1}
+					{include file="template-parts/recaptcha.html"}
+				  {/if}
+				  <div class="form-buttons">
+					<button type="button" id="signup_btn" class="btn btn-success btn-block">{$lang_new_account}</button>
+				  </div>
+				</form>
+			</div>
+			<div class="col-md-6 col-lg-8">
+
+			</div>
+		</div>
+	</div>
+</div>
+{include file="footer.html"}

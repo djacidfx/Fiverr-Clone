@@ -1,0 +1,71 @@
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="footer-menu">
+                    <ul>
+                        <li><a href="./">{$lang_homepage}</a></li>
+                        {if $mail_enable_contact eq 1}<li><a href="./contact">{$lang_contact}</a></li>{/if}
+                        {section name=x loop=$pages}
+                        <li><a href="./page/{$pages[x].slug}">{$pages[x].title|html_decode}</a></li>
+                        {/section}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                {if !empty($social_facebook_account) OR !empty($social_twitter_account) OR !empty($social_linkedin_account) OR !empty($social_youtube_account) OR !empty($social_instagram_account)}
+                <div class="social-icons">
+                    <h5>{$lang_social_title}</h5>
+                    {if !empty($social_facebook_account)}
+                        <a href="{$social_facebook_account}" class="social-profile facebook-profile" data-toggle="tooltip" data-placement="top" title="{$lang_social_facebook}" target="_blank"><i class="icon icon-logo-facebook"></i></a>
+                    {/if}
+                    {if !empty($social_twitter_account)}
+                        <a href="{$social_twitter_account}" class="social-profile twitter-profile" data-toggle="tooltip" data-placement="top" title="{$lang_social_twitter}" target="_blank"><i class="icon icon-logo-twitter"></i></a>
+                    {/if}
+                    {if !empty($social_linkedin_account)}
+                        <a href="{$social_linkedin_account}" class="social-profile linkedin-profile" data-toggle="tooltip" data-placement="top" title="{$lang_social_linkedin}" target="_blank"><i class="icon icon-logo-linkedin"></i></a>
+                    {/if}
+                    {if !empty($social_youtube_account)}
+                        <a href="{$social_youtube_account}" class="social-profile youtube-profile" data-toggle="tooltip" data-placement="top" title="{$lang_social_youtube}" target="_blank"><i class="icon icon-logo-youtube"></i></a>
+                    {/if}
+                    {if !empty($social_instagram_account)}
+                        <a href="{$social_instagram_account}" class="social-profile instagram-profile" data-toggle="tooltip" data-placement="top" title="{$lang_social_instagram}" target="_blank"><i class="icon icon-logo-instagram"></i></a>
+                    {/if}
+                </div>
+                {/if}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="copyrights">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="copyrights-text">{$lang_copyrights} <a href="{$general_siteurl}">{$general_seo_title}</a></div>
+            </div>
+            <div class="col-md-6">
+                <div class="powered-text">{$lang_powered} <a href="https://microncer.com" target="_blank">Microncer Solo</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="login-popup.html"}
+{if !empty($api_ga_tracking_number)}
+{literal}
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', '{/literal}{$api_ga_tracking_number}{literal}', 'auto');
+    ga('send', 'pageview');
+
+</script>
+{/literal}
+{/if}
+{if isset($theme_footer_code) AND !empty($theme_footer_code)}
+{$theme_footer_code}
+{/if}
+</body>
+</html>

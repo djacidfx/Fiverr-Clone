@@ -1,0 +1,22 @@
+RewriteEngine on
+RewriteRule ^change-password$ user-setting.php?case=change_password
+RewriteRule ^signup$ signup.php
+RewriteRule ^login$ login.php
+RewriteRule ^contact$ contact.php
+RewriteRule ^services$ services.php
+RewriteRule ^dashboard/messages$ messages.php
+RewriteRule ^dashboard/orders$ orders.php
+RewriteRule ^dashboard/account$ account.php
+RewriteRule ^service/(.*)$ service.php?slug=$1
+RewriteRule ^pay/(.*)$ pay.php?slug=$1
+RewriteRule ^page/(.*)$ page.php?slug=$1
+RewriteRule ^dashboard/orders/order/(.*)$ order.php?id=$1
+RewriteRule ^download-attachment/(.*)$ download.php?id=$1
+RewriteRule ^download-file/(.*)$ download_file.php?id=$1
+RewriteRule ^process-order$ process_order.php
+RewriteRule ^user-activation/(.*)/(.*)$ user-tools.php?case=confirm_user_email&email=$1&activation_code=$2
+RewriteRule ^reset-password/(.*)/(.*)$ user-tools.php?case=reset_password&email=$1&activation_code=$2
+RewriteRule ^forget-password$ user-tools.php?case=forget_password
+RewriteRule ^not-found$ 404.php
+RewriteRule ^category/(.*)$ category.php?id=$1
+

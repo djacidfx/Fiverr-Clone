@@ -1,0 +1,19 @@
+{if $slider neq 0}
+<div class="slider" dir="ltr">
+    {section name=x loop=$slider}
+    <div class="slide">
+        <img src="upload/slider/{$slider[x].slide_image}" />
+        <div class="container">
+            {if !empty($slider[x].slide_title) OR !empty($slider[x].slide_text)}
+            <div class="row">
+                <div class="col-sm-9 col-md-6 column">
+                    {if !empty($slider[x].slide_title)}<h3>{$slider[x].slide_title|html_decode}</h3>{/if}
+                    {if !empty($slider[x].slide_text)}<p>{$slider[x].slide_text|html_decode}</p>{/if}
+                </div>
+            </div>
+            {/if}
+        </div>
+    </div>
+    {/section}
+</div>
+{/if}

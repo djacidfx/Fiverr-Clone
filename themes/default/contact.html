@@ -1,0 +1,50 @@
+{include file="header.html"}
+<div class="service-title-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1>{$lang_contact}</h1>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="contact-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				{if $mail_enable_contact eq 1}
+				<div class="form">
+				<div id="contact-form-message"></div>
+					<form id="contact-form" method="POST" action="">
+							<div class="form-group">
+								<label for="name">{$lang_name} <span>*</span></label>
+								<input type="text" class="form-control" name="name" id="name" />
+							</div>
+							<div class="form-group">
+								<label for="email">{$lang_email} <span>*</span></label>
+								<input type="text" class="form-control" name="email" id="email" />
+							</div>
+							<div class="form-group">
+								<label for="title">{$lang_message_title} <span>*</span></label>
+								<input type="text" class="form-control" name="title" id="title" />
+							</div>
+							<div class="form-group">
+								<label for="content">{$lang_message_content} <span>*</span></label>
+								<textarea class="form-control" name="content" id="content" rows="5"></textarea>
+							</div>
+							{if isset($api_allow_contact_recaptcha) AND $api_allow_contact_recaptcha eq 1}
+							{include file="template-parts/recaptcha.html"}
+							{/if}
+							<div class="form-buttons">
+							<button type="submit" id="contact-form-btn" name="submit" class="btn btn-secondary">{$lang_send_message}</button>
+							</div>
+					</form>
+				</div>
+				{else}
+				<div class="alert alert-warning">{$lang_contact_disabled}</div>
+				{/if}
+			</div>
+		</div>
+	</div>
+</div>
+{include file="footer.html"}

@@ -1,0 +1,210 @@
+.order-details-wrapper {
+  padding:rem-calc(60 0);
+  background:#F7F7F7;
+  .order-title {
+    margin-bottom:rem-calc(20);
+    h1 {
+      color:#888;
+      font-size:rem-calc(32);
+      font-weight:700;
+
+    }
+  }
+  .service-details-box {
+    padding:rem-calc(20);
+    background:#fff;
+    border:rem-calc(2) solid #eee;
+    margin-bottom:rem-calc(20);
+    overflow:hidden;
+    position:relative;
+    h5 {
+      font-size:rem-calc(12);
+      line-height:rem-calc(20);
+      color:#666;
+      text-transform:uppercase;
+      font-weight:300;
+      margin-bottom:0;
+    }
+    h3 {
+      font-size:rem-calc(18);
+      line-height:rem-calc(24);
+      padding-right:rem-calc(100);
+      a {
+        color:#5053AB;
+        font-weight:700;
+
+      }
+    }
+    .service-price-delivery {
+      position:absolute;
+      right:rem-calc(20);
+      top:rem-calc(20);
+      font-size:rem-calc(18);
+      font-weight:700;
+      text-align:center;
+      color:#5053AB;
+      letter-spacing:rem-calc(-1);
+      small {
+        font-size:rem-calc(10);
+        font-weight:300;
+        letter-spacing:rem-calc(1);
+        margin-left:rem-calc(5);
+      }
+      span {
+        display:block;
+        background:#EF59AC;
+        color:#fff;
+        border-radius:rem-calc(3);
+      }
+      .download-btn {
+        display:block;
+        background:#EF59AC;
+        color:#fff;
+        border-radius:rem-calc(3);
+        padding:rem-calc(0 7);
+      }
+    }
+    ul {
+      list-style:none;
+      margin:0;
+      padding:0;
+      li {
+        display:block;
+        font-size:rem-calc(14);
+        padding:rem-calc(4 0);
+        font-weight:300;
+        i {
+          color:#aaa;
+          position:relative;
+          top:rem-calc(2);
+        }
+        strong {
+
+        }
+      }
+    }
+  }
+  .order-requirements-box {
+    padding:rem-calc(20 20 20 100);
+    border:rem-calc(2) solid #ccdcf9;
+    position:relative;
+    min-height:rem-calc(120);
+    margin-bottom:rem-calc(20);
+    background:#e5edfc;
+
+    i {
+      &.icon {
+        position:absolute;
+        left:rem-calc(20);
+        top:rem-calc(10);
+        font-size:rem-calc(60);
+        color:#5ea6ed;
+      }
+    }
+    h5 {
+      font-size:rem-calc(12);
+      line-height:rem-calc(20);
+      color:#666;
+      text-transform:uppercase;
+      font-weight:300;
+      margin-bottom:0;
+    }
+  }
+  .messages-box {
+    padding: rem-calc(20);
+    background: #fff;
+    border: rem-calc(1) solid #ccc;
+    position: relative;
+    margin-bottom:rem-calc(20);
+    .send-message-form {
+      .form-group {
+        position:relative;
+        margin-bottom:0;
+        textarea {
+          border-bottom:rem-calc(50) solid #eee;
+          border-radius:0;
+        }
+        button {
+          position:absolute;
+          bottom:rem-calc(10);
+          right:rem-calc(10);
+          font-weight:300;
+          font-size:rem-calc(13);
+        }
+      }
+
+
+
+    .message-tools {
+      position:relative;
+
+    }
+
+    }
+  }
+  .messages {
+
+    .message {
+      background:#FFF3D4;
+      border:2px solid #f2da9d;
+      font-weight:400;
+      font-size:16px;
+      line-height:24px;
+      color:#333;
+      margin-bottom:20px;
+      h4 {
+        font-weight:300;
+        font-size:14px;
+        line-height:20px;
+
+        padding:15px;
+        border-bottom:1px solid #f2da9d;
+      }
+      p {
+        padding:0 15px 15px 15px;
+        margin-bottom:0;
+      }
+      .attachments {
+        border-top: rem-calc(1) solid #f2da9d;
+        padding: rem-calc(15);
+        background: #fce9b8;
+        h5 {
+          font-weight:300;
+          font-size:14px;
+          line-height:20px;
+
+          color:#bc8112;
+        }
+        ul {
+          list-style:none;
+          margin:0;
+          padding:0;
+          li {
+            a {
+              font-weight:300;
+              font-size:14px;
+              line-height:20px;
+              color:#222;
+            }
+          }
+        }
+      }
+      &.admin-sender {
+        background:#fff;
+        border-color:#eee;
+        color:#777;
+        h4 {
+          border-color:#f9f9f9;
+        }
+        .attachments {
+          border-top:1px solid #f5f5f5;
+          padding:15px;
+          background:#f9f9f9;
+          h5 {
+            color:#444;
+          }
+        }
+      }
+    }
+  }
+}

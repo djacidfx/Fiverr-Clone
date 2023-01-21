@@ -1,0 +1,12 @@
+<div class="service">
+    <div class="service-image">
+        <a href="./service/{$services[x].slug}"><img src="{$services[x].id|get_service_featured_image}" /></a>
+    </div>
+    <div class="service-title" data-mh="service-title">
+        <a href="./service/{$services[x].slug}">{$services[x].title|html_decode}</a>
+    </div>
+    <div class="service-meta">
+        <span class="price"><i class="icon icon-coins"></i> {$services[x].price}<small>{$payment_site_currency}</small></span>
+        <span class="delivery"><i class="icon icon-spaceship"></i> {if empty($services[x].delivery) OR $services[x].delivery eq 0}{$lang_deliver_immediately}{else}{$services[x].delivery} {$lang_days}{/if}</span>
+    </div>
+</div>

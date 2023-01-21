@@ -1,0 +1,129 @@
+#login-modal {
+  .modal-content {
+    border:none;
+    .login-logo {
+      padding:rem-calc(15);
+      border-bottom:rem-calc(2) solid #eee;
+      h3 {
+        font-weight:700;
+        font-size:rem-calc(22);
+        color:#333;
+        margin:0;
+
+        .close-modal {
+          float:right;
+          color:#bd2130;
+          margin-top:rem-calc(2);
+          border-radius:100%;
+        }
+      }
+
+    }
+    .modal-body {
+      padding:0;
+      .social-login {
+        padding:rem-calc(15);
+        border-bottom:rem-calc(1) dashed #ddd;
+        a {
+          display:block;
+          text-align:center;
+          padding:rem-calc(7 22);
+          margin-bottom:rem-calc(20);
+          color:$white;
+          border-radius:rem-calc(3);
+          transition:all 0.3s linear;
+          &.facebook-login {
+            background:#4267b2;
+          }
+          &.twitter-login {
+            background:#1DA1F2;
+          }
+          &.envato-login {
+            background:#81B441;
+          }
+          &:hover {
+            background:#333;
+          }
+        }
+      }
+    }
+    .form-group {
+      padding:rem-calc(15);
+      margin:0;
+      label {
+        width:100%;
+        .fpass-btn {
+          float:right;
+          color:#999;
+        }
+      }
+      .checkbox-styled {
+        input[type="checkbox"] {
+          display:none;
+        }
+        label {
+          position: relative;
+          display: inline-block;
+          padding-left: rem-calc(22);
+          color:$black;
+          vertical-align:middle;
+          &:before,
+          &:after {
+            position: absolute;
+            content: "";
+            display: inline-block;
+          }
+          &:before {
+            height: rem-calc(16);
+            width: rem-calc(16);
+            border: rem-calc(1) solid;
+            left: 0;
+            top: rem-calc(6);
+          }
+          &:after {
+            height: rem-calc(5);
+            width: rem-calc(9);
+            border-left: rem-calc(2) solid;
+            border-bottom: rem-calc(2) solid;
+
+            transform: rotate(-45deg);
+
+            left: rem-calc(4);
+            top: rem-calc(10);
+          }
+          &:hover {
+            color:$black;
+          }
+          span {
+            color:$black;
+            padding-top:rem-calc(3);
+            display:inline-block;
+          }
+        }
+        input[type="checkbox"] + label::after {
+          content: none;
+        }
+        input[type="checkbox"]:checked + label::after {
+          content: "";
+        }
+      }
+    }
+    .form-buttons {
+      border-top:rem-calc(2) solid #eee;
+      padding:rem-calc(15);
+      button {
+        font-weight:500;
+        font-size:rem-calc(16);
+
+      }
+    }
+  }
+  .logout-message {
+    padding:rem-calc(20);
+    p {
+      font-weight:500;
+      font-size:rem-calc(16);
+      color:#666;
+    }
+  }
+}

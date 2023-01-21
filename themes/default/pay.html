@@ -1,0 +1,198 @@
+{include file="header.html"}
+<div class="service-title-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>{$lang_make_payment}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="payment-page-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="service-details-box">
+                    <h5>{$lang_service_details}</h5>
+                    <h3><a href="./service/{$service_slug}">{$service_title|html_decode}</a></h3>
+                    <div class="service-price-delivery">
+                        {$service_price}<small>{$payment_site_currency}</small>
+                        <span>{$service_delivery}<small>{$lang_days}</small></span>
+                    </div>
+                </div>
+                {if $islogged eq 0}
+                <div class="login-message">
+                    <div class="alert alert-warning">
+                        <a href="javascript:void();" data-toggle="modal" data-target="#login-modal" data-backdrop="static" data-keyboard="false" class="alert-link">{$lang_login_to_account}</a> {$lang_to_purchase}
+                    </div>
+                </div>
+                {else}
+                {if $payment_allow_paypal eq 1 OR $payment_allow_stripe eq 1 OR $payment_allow_offline eq 1 OR $payment_allow_razorpay eq 1}
+                <div class="payment">
+                    <h4>{$lang_payment_methods}</h4>
+                    {if $payment_allow_offline eq 1}
+                    <div class="offline payment-method">
+                        <h5>{if !empty($payment_offline_payment_title)}{$payment_offline_payment_title}{else}{$lang_offline_payment}{/if}</h5>
+                        <div class="payment-button">
+                            <a href="#" class="btn btn-primary offline-payment-btn" data-service-id="{$service_id}" data-customer-id="{$customer_id}">{$lang_pay_now}</a>
+                        </div>
+                    </div>
+                    {/if}
+                    {if $payment_allow_paypal eq 1}
+                    <div class="paypal payment-method">
+                       <h5>{$lang_paypal}</h5>
+                       <div class="payment-button">
+                           <a href="{$approval_link}" class="btn btn-primary">{$lang_pay_paypal}</a>
+                       </div>
+                    </div>
+                    {/if}
+                    {if $payment_allow_stripe eq 1}
+                    <div class="stripe payment-method">
+                        <h5>{$lang_debit_credit}</h5>
+                        <form action="" method="POST" id="payment-form">
+                            <div class="payment-errors"></div>
+
+                            <div class="form-field">
+                                <label>{$lang_card_number}</label>
+                                <input type="text" size="20" data-stripe="number" class="form-control">
+                            </div>
+                            <div class="form-field">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label>{$lang_expiration}</label>
+                                    <select data-stripe="exp_month" class="form-control">
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="09">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </div>
+                                <div class="col-5 no-padding">
+                                    <label class="not-visible">{$lang_year}</label>
+                                    <select data-stripe="exp_year" class="form-control">
+                                        {for $year=$current_year to $current_year+10}
+                                        <option value="{$year|substr}">{$year}</option>
+                                        {/for}
+                                    </select>
+                                </div>
+                                <div class="col-3">
+                                    <label>{$lang_cvc}</label>
+                                    <input type="number" size="4" data-stripe="cvc" class="form-control">
+                                </div>
+                            </div>
+                            </div>
+                            <input type="submit" class="submit btn btn-dark" value="{$lang_pay_now}">
+                        </form>
+                        <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+                        {literal}
+                        <script type="text/javascript">
+                            Stripe.setPublishableKey({/literal}'{$stripe_pub_key}'{literal});
+
+                            $(function() {
+                                var $form = $('#payment-form');
+                                $form.submit(function(event) {
+                                    // Disable the submit button to prevent repeated clicks:
+                                    $form.find('.submit').prop('disabled', true);
+
+                                    // Request a token from Stripe:
+                                    Stripe.card.createToken($form, stripeResponseHandler);
+
+                                    // Prevent the form from being submitted:
+                                    return false;
+                                });
+                            });
+
+                            function stripeResponseHandler(status, response) {
+                                // Grab the form:
+                                var $form = $('#payment-form');
+
+                                if (response.error) { // Problem!
+
+                                    // Show the errors on the form:
+                                    $form.find('.payment-errors').html('<div class="callout warning">'+response.error.message+'</div>');
+                                    $form.find('.submit').prop('disabled', false); // Re-enable submission
+
+                                } else { // Token was created!
+
+                                    // Get the token ID:
+                                    var token = response.id;
+
+                                    // Insert the token ID into the form so it gets submitted to the server:
+                                    $form.append($('<input type="hidden" name="stripeToken">').val(token));
+
+                                    // Submit the form:
+                                    $form.get(0).submit();
+                                }
+                            };
+                        </script>
+                        {/literal}
+                    </div>
+                    {/if}
+                    {if $payment_allow_razorpay eq 1}
+                    <div class="razorpay payment-method">
+                        <h5>{$lang_razorpay}</h5>
+
+                        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+                        <form name='razorpayform' action="process_order.php?method=razorpay" method="POST">
+                            <input type="hidden" name="razorpay_payment_id" id="razorpay_payment_id">
+                            <input type="hidden" name="razorpay_signature"  id="razorpay_signature" >
+                            <input type="hidden" name="service_id"  value="{$service_id}" >
+                        </form>
+                        <button id="rzp-button1" class="btn btn-dark">Pay Now</button>
+                        {literal}
+                        <script>
+                            // Checkout details as a json
+                            var options = {/literal}{$razorpay_json}{literal};
+
+                            /**
+                             * The entire list of Checkout fields is available at
+                             * https://docs.razorpay.com/docs/checkout-form#checkout-fields
+                             */
+                            options.handler = function (response){
+                                document.getElementById('razorpay_payment_id').value = response.razorpay_payment_id;
+                                document.getElementById('razorpay_signature').value = response.razorpay_signature;
+                                document.razorpayform.submit();
+                            };
+
+                            // Boolean whether to show image inside a white frame. (default: true)
+                            options.theme.image_padding = false;
+
+                            options.modal = {
+                                ondismiss: function() {
+                                    console.log("This code runs when the popup is closed");
+                                },
+                                // Boolean indicating whether pressing escape key
+                                // should close the checkout form. (default: true)
+                                escape: true,
+                                // Boolean indicating whether clicking translucent blank
+                                // space outside checkout form should close the form. (default: false)
+                                backdropclose: false
+                            };
+
+                            var rzp = new Razorpay(options);
+
+                            document.getElementById('rzp-button1').onclick = function(e){
+                                rzp.open();
+                                e.preventDefault();
+                            }
+                        </script>
+                        {/literal}
+                    </div>
+                    {/if}
+                </div>
+                {/if}
+                {/if}
+            </div>
+        </div>
+    </div>
+</div>
+
+{include file="footer.html"}

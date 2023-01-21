@@ -1,0 +1,46 @@
+{include file="header.html"}
+<div class="service-title-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>{$lang_account}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="dashboard-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="dashboard-sidebar">
+                    {include file="dashboard-menu.html" selected="account"}
+                </div>
+            </div>
+            <div class="col-lg-9">
+                {if isset($message)}{$message}{/if}
+                <div class="account-form">
+                    <h3>{$lang_change_password}</h3>
+                    <div id="change-password-message"></div>
+                    <form id="change-password-form" method="POST" action="">
+                        <div class="form-group">
+                            <label for="current_password">{$lang_current_password} <span>*</span></label>
+                            <input type="password" class="form-control" name="current_password" id="current_password" />
+                        </div>
+                        <div class="form-group">
+                            <label for="new_password">{$lang_new_password} <span>*</span></label>
+                            <input type="password" class="form-control" name="new_password" id="new_password" />
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm_new_password">{$lang_confirm_new_password} <span>*</span></label>
+                            <input type="password" class="form-control" name="confirm_new_password" id="confirm_new_password" />
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit" id="change-password-btn" name="submit" class="btn btn-secondary">{$lang_save}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="footer.html"}

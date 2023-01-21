@@ -1,0 +1,60 @@
+{include file="header.html"}
+<div class="service-title-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>{$lang_orders}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="orders-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="dashboard-sidebar">
+                    {include file="dashboard-menu.html" selected="orders"}
+                </div>
+            </div>
+            <div class="col-lg-9">
+                {if $orders eq 0}
+                <div class="alert alert-warning">{$lang_no_orders_yet}</div>
+                {else}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th width="35"></th>
+                        <th>{$lang_service}</th>
+                        <th>{$lang_price}</th>
+                        <th>{$lang_date}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {section name=x loop=$orders}
+                    <tr>
+                        <td>
+                            {if $orders[x].deleted eq 1}
+                            <span class="badge badge-danger">{$lang_deleted}</span>
+                            {else}
+                                {if $orders[x].completed eq 1}
+                                <span class="badge badge-success">{$lang_completed}</span>
+                                {else}
+                                <span class="badge badge-warning">{$lang_ongoing}</span>
+                                {/if}
+                            {/if}
+                        </td>
+                        <td><a href="./dashboard/orders/order/{$orders[x].order_id}">{$orders[x].title}</a></td>
+                        <td>{$orders[x].amount} {$orders[x].currency}</td>
+                        <td>{$orders[x].order_datetime|get_datetime}</td>
+                    </tr>
+                    {/section}
+                    </tbody>
+                </table>
+                {$paginations}
+                {/if}
+            </div>
+        </div>
+    </div>
+</div>
+
+{include file="footer.html"}
